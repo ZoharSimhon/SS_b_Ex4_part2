@@ -10,15 +10,20 @@ double Point::getY() { return this->y_; }
 
 double Point::distance(const Point &otherPoint) const
 {
-    return 0.0;
+    double xPow = pow((this->x_-otherPoint.x_), 2);
+    double yPow = pow((this->y_-otherPoint.y_), 2);
+    return sqrt(xPow+yPow);
 }
 
 string Point::print() const
 {
-    return "(0,0)";
+    string toPrint;
+    toPrint << "(" << this->x_ << "," << this->y_ << ")";
+    return toPrint;   
 }
 
 const Point Point::moveTowards(const Point &src, const Point &dest, double distance)
 {
+    
     return Point(0.0, 0.0);
 }
