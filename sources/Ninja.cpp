@@ -10,3 +10,15 @@ void Ninja::move(const Character *)
 void Ninja::slash(Character *) const
 {
 }
+
+string Ninja::print() const
+{
+    string toPrint;
+    if (this->isAlive())
+        toPrint = "Name: N " + this->getName() +
+                  " Number of hit points: " + to_string(this->getHitPoint());
+    else
+        toPrint = "Name: ( N " + this->getName() + ")";
+
+    return toPrint;
+}

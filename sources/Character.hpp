@@ -11,7 +11,6 @@ const int TRAINED_NINJA_SPEAD = 12;
 const int OLD_NINJA_SPEAD = 8;
 const int COWBOY_BALLS_NUMBER = 6;
 
-
 namespace ariel
 {
     class Character
@@ -24,12 +23,15 @@ namespace ariel
     public:
         // constructor
         Character(const Point &, int, string);
+        //getters
+        string getName() const;
+        Point getLocation() const;
+        int getHitPoint() const;
+        
         bool isAlive() const;
         double distance(const Character &) const;
         void hit(int);
-        string getName() const;
-        Point getLocation() const;
-        string print() const;
-    }; //class Character
+        virtual string print() const = 0;
+    }; // class Character
 
-} // namespace ariel    
+} // namespace ariel

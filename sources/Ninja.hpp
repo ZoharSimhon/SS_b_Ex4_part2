@@ -12,5 +12,6 @@ namespace ariel
         Ninja(const Point &, int, string, int);
         void move(const Character *);
         void slash(Character *) const;
+        string print() const override;
     };
 }
