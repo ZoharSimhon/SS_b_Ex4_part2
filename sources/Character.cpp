@@ -27,7 +27,7 @@ int Character::getHitPoint() const
 // setters
 void Character::setLocation(const Point &dest)
 {
-    // this->location_
+    this->location_ = dest;
 }
 
 double Character::distance(const Character &otherCharecter) const

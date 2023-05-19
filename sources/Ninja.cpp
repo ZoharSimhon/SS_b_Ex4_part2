@@ -4,11 +4,16 @@ using namespace ariel;
 Ninja::Ninja(const Point &location, int hitPoint, string name, int spead)
     : Character(location, hitPoint, name), spead_(spead) {}
 
-void Ninja::move(const Character *)
+void Ninja::move(const Character *enemy)
 {
+    this->setLocation(Point::moveTowards(this->getLocation(), enemy->getLocation(), this->spead_));
 }
-void Ninja::slash(Character *) const
+void Ninja::slash(Character *enemy) const
 {
+    if (this->isAlive() && this->distance(*enemy) < 1)
+    {
+        enemy->hit(40);
+    }
 }
 
 string Ninja::print() const
