@@ -6,11 +6,11 @@ namespace ariel
     class Cowboy : public Character
     {
     private:
-        int ballsNumber_;
+        int bulletsNumber_;
 
     public:
         Cowboy(string, const Point &);
-        void shoot(Character *) const;
+        void shoot(Character *);
         bool hasboolets() const;
         void reload();
         string print() const override;

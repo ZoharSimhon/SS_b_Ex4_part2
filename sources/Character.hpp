@@ -9,7 +9,7 @@ const int COWBOY_HIT_POINT = 110;
 const int YOUNG_NINJA_SPEAD = 14;
 const int TRAINED_NINJA_SPEAD = 12;
 const int OLD_NINJA_SPEAD = 8;
-const int COWBOY_BALLS_NUMBER = 6;
+const int COWBOY_BULLETS_NUMBER = 6;
 
 namespace ariel
 {
@@ -27,6 +27,9 @@ namespace ariel
         string getName() const;
         Point getLocation() const;
         int getHitPoint() const;
+
+        //setters
+        void setLocation(const Point &);
         
         bool isAlive() const;
         double distance(const Character &) const;
