@@ -39,9 +39,9 @@ string Cowboy::print() const
     string toPrint;
     if (this->isAlive())
         toPrint = "Name: C " + this->getName() +
-                  " Number of hit points: " + to_string(this->getHitPoint());
+                  " Number of hit points: " + to_string(this->getHitPoint()) + this->getLocation().print();
     else
-        toPrint = "(Name: C " + this->getName() + ")";
+        toPrint = "(Name: C " + this->getName() + ")"+ this->getLocation().print();;
 
     return toPrint;
 }

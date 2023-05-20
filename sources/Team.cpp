@@ -25,7 +25,7 @@ size_t Team::findClosestToLeader(Team *team)
     {
         if (member->isAlive() && currLeader->distance(member) < minDistance)
         {
-            minDistance = currLeader->distance(member) < minDistance;
+            minDistance = currLeader->distance(member);
             minIndex = index;
         }
         index++;

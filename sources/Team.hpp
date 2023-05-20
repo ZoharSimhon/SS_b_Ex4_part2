@@ -28,7 +28,7 @@ namespace ariel
         void setLeaderIndex(size_t);
 
         void add(Character *);
-        virtual void attack(Team *);
+        void attack(Team *);
         int stillAlive() const;
         void print() const;
         // ~Team();

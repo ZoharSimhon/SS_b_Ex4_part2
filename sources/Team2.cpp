@@ -21,8 +21,8 @@ void Team2::attack(Team *enemy)
             return;
 
         // find victim from the enemy team
-        size_t victimindex = findClosestToLeader(enemy);
-        member->attack((*enemy->getGroup())[victimindex]);
+        size_t victimIndex = findClosestToLeader(enemy);
+        member->attack((*enemy->getGroup())[victimIndex]);
     }
 }
 
