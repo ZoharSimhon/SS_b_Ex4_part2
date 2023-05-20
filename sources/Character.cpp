@@ -2,8 +2,8 @@
 using namespace ariel;
 
 // constructor
-Character::Character(const Point &location, int hitPoint, string name)
-    : location_(location), hitPoint_(hitPoint), name_(name) {}
+Character::Character(const Point &location, int hitPoint, string name, bool isNinja)
+    : location_(location), hitPoint_(hitPoint), name_(name), isNinja_(isNinja) {}
 
 bool Character::isAlive() const
 {
@@ -22,6 +22,10 @@ Point Character::getLocation() const
 int Character::getHitPoint() const
 {
     return this->hitPoint_;
+}
+bool Character::getIsNinja() const
+{
+    return this->isNinja_;
 }
 
 // setters

@@ -11,6 +11,9 @@ const int TRAINED_NINJA_SPEAD = 12;
 const int OLD_NINJA_SPEAD = 8;
 const int COWBOY_BULLETS_NUMBER = 6;
 
+const bool NINJA = true;
+const bool COWBOY = false;
+
 namespace ariel
 {
     class Character
@@ -19,22 +22,28 @@ namespace ariel
         Point location_;
         int hitPoint_;
         string name_;
+        bool isNinja_;
 
     public:
         // constructor
-        Character(const Point &, int, string);
-        //getters
+        Character(const Point &, int, string, bool);
+
+        // getters
         string getName() const;
         Point getLocation() const;
         int getHitPoint() const;
+        bool getIsNinja() const;
 
-        //setters
+        // setters
         void setLocation(const Point &);
-        
+
         bool isAlive() const;
         double distance(const Character &) const;
         void hit(int);
+
+        //virtual functions
         virtual string print() const = 0;
+        virtual void attack(Character *) = 0;
     }; // class Character
 
 } // namespace ariel

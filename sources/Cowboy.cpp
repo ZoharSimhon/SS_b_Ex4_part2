@@ -3,7 +3,7 @@
 using namespace ariel;
 
 Cowboy::Cowboy(string name, const Point &location)
-    : Character(location, COWBOY_HIT_POINT, name), bulletsNumber_(COWBOY_BULLETS_NUMBER) {}
+    : Character(location, COWBOY_HIT_POINT, name, COWBOY), bulletsNumber_(COWBOY_BULLETS_NUMBER) {}
 
 void Cowboy::shoot(Character *enemy)
 {
@@ -19,9 +19,11 @@ bool Cowboy::hasboolets() const
 }
 void Cowboy::reload()
 {
-    this->bulletsNumber_ += COWBOY_BULLETS_NUMBER;
+    if (this->isAlive())
+        this->bulletsNumber_ += COWBOY_BULLETS_NUMBER;
 }
 
+// override functions
 string Cowboy::print() const
 {
     string toPrint;
@@ -32,4 +34,11 @@ string Cowboy::print() const
         toPrint = "Name: ( C " + this->getName() + ")";
 
     return toPrint;
+}
+void Cowboy::attack(Character * enemy)
+{
+    if (this->hasboolets())
+        this->shoot(enemy);
+    else
+        this->reload();
 }

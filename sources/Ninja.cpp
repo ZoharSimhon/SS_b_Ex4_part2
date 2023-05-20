@@ -2,11 +2,14 @@
 using namespace ariel;
 
 Ninja::Ninja(const Point &location, int hitPoint, string name, int spead)
-    : Character(location, hitPoint, name), spead_(spead) {}
+    : Character(location, hitPoint, name, NINJA), spead_(spead) {}
 
 void Ninja::move(const Character *enemy)
 {
-    this->setLocation(Point::moveTowards(this->getLocation(), enemy->getLocation(), this->spead_));
+    if (this->isAlive())
+    {
+        this->setLocation(Point::moveTowards(this->getLocation(), enemy->getLocation(), this->spead_));
+    }
 }
 void Ninja::slash(Character *enemy) const
 {
@@ -16,6 +19,7 @@ void Ninja::slash(Character *enemy) const
     }
 }
 
+// override functions
 string Ninja::print() const
 {
     string toPrint;
@@ -26,4 +30,11 @@ string Ninja::print() const
         toPrint = "Name: ( N " + this->getName() + ")";
 
     return toPrint;
+}
+void Ninja::attack(Character * enemy)
+{
+    if( this->distance(*enemy) < 1)
+        this->slash(enemy);
+    else
+        this->move(enemy);
 }

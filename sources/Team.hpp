@@ -11,8 +11,11 @@ namespace ariel
     class Team
     {
     private:
-        vector<Character *> group;
-        int leaderIndex;
+        vector<Character *> group_;
+        size_t leaderIndex_;
+
+        // helper functions
+        size_t findClosestToLeader(Team *team);
 
     public:
         Team(Character *);

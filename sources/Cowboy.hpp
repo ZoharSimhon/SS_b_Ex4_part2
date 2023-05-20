@@ -13,6 +13,9 @@ namespace ariel
         void shoot(Character *);
         bool hasboolets() const;
         void reload();
+
+        // override functions
         string print() const override;
+        void attack(Character *) override;
     };
 }
