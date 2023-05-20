@@ -5,10 +5,14 @@ using namespace ariel;
 Character::Character(const Point &location, int hitPoint, string name, bool isNinja)
     : location_(location), hitPoint_(hitPoint), name_(name), isNinja_(isNinja), isPlay_(false) {}
 
-bool Character::isAlive() const
-{
-    return this->hitPoint_ > 0;
-}
+// // five methods:
+// Character::Character(const Character &otherCharacter)
+//     : location_(otherCharacter.location_), hitPoint_(otherCharacter.hitPoint_),
+//       name_(otherCharacter.name_), isNinja_(otherCharacter.isNinja_), isPlay_(false) {}
+// Character::Character(Character &&) noexcept;
+// Character &operator=(const Character &);
+// Character &operator=(Character &&) noexcept;
+// ~Character();
 
 // getters
 string Character::getName() const
@@ -42,6 +46,10 @@ void Character::setIsPlay()
     this->isPlay_ = true;
 }
 
+bool Character::isAlive() const
+{
+    return this->hitPoint_ > 0;
+}
 double Character::distance(const Character *otherCharecter) const
 {
     return this->location_.distance(otherCharecter->location_);
@@ -49,7 +57,7 @@ double Character::distance(const Character *otherCharecter) const
 
 void Character::hit(int num)
 {
-    if (num<0)
+    if (num < 0)
         throw invalid_argument("can't hit negive number");
 
     this->hitPoint_ -= num;

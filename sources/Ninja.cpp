@@ -36,7 +36,7 @@ string Ninja::print() const
         toPrint = "Name: N " + this->getName() +
                   " Number of hit points: " + to_string(this->getHitPoint());
     else
-        toPrint = "(Name: N " + this->getName() + ")";
+        toPrint = "(Name: N " + this->getName() + ")" + to_string(this->getHitPoint());
 
     return toPrint;
 }

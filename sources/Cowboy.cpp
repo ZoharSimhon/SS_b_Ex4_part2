@@ -12,8 +12,8 @@ void Cowboy::shoot(Character *enemy)
 
     if (!enemy->isAlive())
         throw runtime_error("a dead Character can't be shooted");
-    
-    if(enemy == this)
+
+    if (enemy == this)
         throw runtime_error("No self harm");
 
     if (this->hasboolets())
@@ -41,7 +41,7 @@ string Cowboy::print() const
         toPrint = "Name: C " + this->getName() +
                   " Number of hit points: " + to_string(this->getHitPoint()) + this->getLocation().print();
     else
-        toPrint = "(Name: C " + this->getName() + ")"+ this->getLocation().print();;
+        toPrint = "(Name: C " + this->getName() + ")" + this->getLocation().print();
 
     return toPrint;
 }

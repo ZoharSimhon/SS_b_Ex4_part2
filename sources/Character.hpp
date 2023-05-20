@@ -29,6 +29,13 @@ namespace ariel
         // constructor
         Character(const Point &, int, string, bool);
 
+        // // five methods:
+        // Character(const Character &);
+        // Character(Character &&) noexcept;
+        // Character &operator=(const Character &);
+        // Character &operator=(Character &&) noexcept;
+        // ~Character();
+
         // getters
         string getName() const;
         Point getLocation() const;
@@ -44,7 +51,7 @@ namespace ariel
         double distance(const Character *) const;
         void hit(int);
 
-        //virtual functions
+        // virtual functions
         virtual string print() const = 0;
         virtual void attack(Character *) = 0;
     }; // class Character
