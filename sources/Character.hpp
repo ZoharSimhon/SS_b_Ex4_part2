@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
+
 #include "Point.hpp"
 
 const int YOUNG_NINJA_HIT_POINT = 100;
@@ -29,12 +31,12 @@ namespace ariel
         // constructor
         Character(const Point &, int, string, bool);
 
-        // // five methods:
-        // Character(const Character &);
-        // Character(Character &&) noexcept;
-        // Character &operator=(const Character &);
-        // Character &operator=(Character &&) noexcept;
-        // ~Character();
+        // five methods:
+        Character(const Character &);
+        Character(Character &&) noexcept;
+        Character &operator=(const Character &);
+        Character &operator=(Character &&) noexcept;
+        virtual ~Character() {}
 
         // getters
         string getName() const;
@@ -57,3 +59,5 @@ namespace ariel
     }; // class Character
 
 } // namespace ariel
+
+#endif

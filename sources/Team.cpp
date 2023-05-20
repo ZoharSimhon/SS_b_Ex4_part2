@@ -12,6 +12,33 @@ Team::Team(Character *leader)
     leader->setIsPlay();
 }
 
+// five methods:
+Team::Team(const Team &other)
+{
+    throw runtime_error("a player can be member of one team only");
+}
+Team::Team(Team &&other) noexcept
+{
+    *this = other;
+}
+Team &Team::operator=(const Team &other)
+{
+    throw runtime_error("a player can be member of one team only");
+}
+Team &Team::operator=(Team &&other) noexcept
+{
+    *this = other;
+    return *this;
+}
+Team::~Team()
+{
+    for (Character *member : this->group_)
+    {
+        delete member;
+    }
+    group_.clear();
+}
+
 // helper functions
 size_t Team::findClosestToLeader(Team *team)
 {

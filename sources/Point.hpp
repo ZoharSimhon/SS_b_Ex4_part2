@@ -1,4 +1,6 @@
-#pragma once
+#ifndef POINT_HPP
+#define POINT_HPP
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -25,3 +27,5 @@ namespace ariel
         static const Point moveTowards(const Point &,const Point &, double);
     };
 }
+
+#endif

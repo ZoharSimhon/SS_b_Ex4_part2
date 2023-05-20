@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TRAINED_NINJA_HPP
+#define TRAINED_NINJA_HPP
+
 #include "Ninja.hpp"
 
 namespace ariel
@@ -12,3 +14,5 @@ namespace ariel
             : Ninja(location, TRAINED_NINJA_HIT_POINT, std::move(name), TRAINED_NINJA_SPEAD) {}
     };
 }
+
+#endif

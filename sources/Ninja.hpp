@@ -1,4 +1,6 @@
-#pragma once
+#ifndef NINJA_HPP
+#define NINJA_HPP
+
 #include "Character.hpp"
 
 namespace ariel
@@ -15,6 +17,8 @@ namespace ariel
 
         // override functions
         string print() const override;
-        void attack(Character *) override;
+        void attack(Character *enemy) override;
     };
 }
+
+#endif

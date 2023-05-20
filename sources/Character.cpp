@@ -5,14 +5,41 @@ using namespace ariel;
 Character::Character(const Point &location, int hitPoint, string name, bool isNinja)
     : location_(location), hitPoint_(hitPoint), name_(name), isNinja_(isNinja), isPlay_(false) {}
 
-// // five methods:
-// Character::Character(const Character &otherCharacter)
-//     : location_(otherCharacter.location_), hitPoint_(otherCharacter.hitPoint_),
-//       name_(otherCharacter.name_), isNinja_(otherCharacter.isNinja_), isPlay_(false) {}
-// Character::Character(Character &&) noexcept;
-// Character &operator=(const Character &);
-// Character &operator=(Character &&) noexcept;
-// ~Character();
+// five methods:
+Character::Character(const Character &other)
+    : location_(other.location_), hitPoint_(other.hitPoint_),
+      name_(other.name_), isNinja_(other.isNinja_), isPlay_(false) {}
+
+Character::Character(Character &&other) noexcept
+    : location_(other.location_), hitPoint_(other.hitPoint_),
+      name_(other.name_), isNinja_(other.isNinja_), isPlay_(false) {}
+
+Character &Character::operator=(const Character &other)
+{
+    if (this == &other)
+        return *this;
+
+    this->location_ = other.location_;
+    this->hitPoint_ = other.hitPoint_;
+    this->name_ = other.name_;
+    this->isNinja_ = other.isNinja_;
+    this->isPlay_ = other.isPlay_;
+
+    return *this;
+}
+Character &Character::operator=(Character &&other) noexcept
+{
+    if (this == &other)
+        return *this;
+
+    this->location_ = move(other.location_);
+    this->hitPoint_ = other.hitPoint_;
+    this->name_ = move(other.name_);
+    this->isNinja_ = other.isNinja_;
+    this->isPlay_ = other.isPlay_;
+
+    return *this;
+}
 
 // getters
 string Character::getName() const

@@ -38,7 +38,6 @@ int main() {
 
 
      while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){
-         sleep(1);
         team_A.attack(&team_B);
         team_B.attack(&team_A);
         team_A.print();

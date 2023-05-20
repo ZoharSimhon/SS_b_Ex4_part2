@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEAM2_HPP
+#define TEAM2_HPP
 
 #include <unistd.h>
 
@@ -24,3 +25,5 @@ namespace ariel
         // ~Team();
     };
 }
+
+#endif

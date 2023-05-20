@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEAM_HPP
+#define TEAM_HPP
 
 #include <unistd.h>
 
@@ -17,6 +18,13 @@ namespace ariel
         size_t leaderIndex_;
 
     public:
+        // five methods:
+        Team(const Team &);
+        Team(Team &&) noexcept;
+        Team &operator=(const Team &);
+        Team &operator=(Team &&) noexcept;
+        virtual ~Team();
+
         // helper functions
         size_t findClosestToLeader(Team *team);
         Team(Character *);
@@ -34,3 +42,5 @@ namespace ariel
         // ~Team();
     };
 }
+
+#endif
