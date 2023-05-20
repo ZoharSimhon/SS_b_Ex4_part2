@@ -7,7 +7,16 @@ Cowboy::Cowboy(string name, const Point &location)
 
 void Cowboy::shoot(Character *enemy)
 {
-    if (this->isAlive() && this->hasboolets())
+    if (!this->isAlive())
+        throw runtime_error("a dead Cowboy can't shoot");
+
+    if (!enemy->isAlive())
+        throw runtime_error("a dead Character can't be shooted");
+    
+    if(enemy == this)
+        throw runtime_error("No self harm");
+
+    if (this->hasboolets())
     {
         enemy->hit(10);
         this->bulletsNumber_ -= 1;
@@ -19,8 +28,9 @@ bool Cowboy::hasboolets() const
 }
 void Cowboy::reload()
 {
-    if (this->isAlive())
-        this->bulletsNumber_ += COWBOY_BULLETS_NUMBER;
+    if (!this->isAlive())
+        throw runtime_error("a dead Cowboy can't reload");
+    this->bulletsNumber_ = COWBOY_BULLETS_NUMBER;
 }
 
 // override functions
@@ -31,14 +41,17 @@ string Cowboy::print() const
         toPrint = "Name: C " + this->getName() +
                   " Number of hit points: " + to_string(this->getHitPoint());
     else
-        toPrint = "Name: ( C " + this->getName() + ")";
+        toPrint = "(Name: C " + this->getName() + ")";
 
     return toPrint;
 }
-void Cowboy::attack(Character * enemy)
+void Cowboy::attack(Character *enemy)
 {
-    if (this->hasboolets())
-        this->shoot(enemy);
-    else
-        this->reload();
+    if (this->isAlive())
+    {
+        if (this->hasboolets())
+            this->shoot(enemy);
+        else
+            this->reload();
+    }
 }

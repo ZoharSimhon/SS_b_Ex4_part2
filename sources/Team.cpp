@@ -4,8 +4,12 @@ using namespace ariel;
 
 Team::Team(Character *leader)
 {
+    if (leader->getIsPlay())
+        throw runtime_error("a player can be member of one team only");
+
     this->group_.push_back(leader);
     this->leaderIndex_ = 0;
+    leader->setIsPlay();
 }
 
 // helper functions
@@ -19,9 +23,9 @@ size_t Team::findClosestToLeader(Team *team)
 
     for (Character *member : team->group_)
     {
-        if (member->isAlive() && currLeader->distance(*member) < minDistance)
+        if (member->isAlive() && currLeader->distance(member) < minDistance)
         {
-            minDistance = currLeader->distance(*member) < minDistance;
+            minDistance = currLeader->distance(member) < minDistance;
             minIndex = index;
         }
         index++;
@@ -29,21 +33,58 @@ size_t Team::findClosestToLeader(Team *team)
     return minIndex;
 }
 
+// getters
+vector<Character *> const *Team::getGroup() const
+{
+    return &this->group_;
+}
+size_t Team::getLeaderIndex() const
+{
+    return this->leaderIndex_;
+}
+
+// setter
+void Team::setLeaderIndex(size_t index)
+{
+    this->leaderIndex_ = index;
+}
+
 void Team::add(Character *member)
 {
-    if (this->group_.size() < 10)
-        this->group_.push_back(member);
-    else
+    if (this->group_.size() == 10)
         throw runtime_error("maximum size of group is 10");
+    if (member->getIsPlay())
+        throw runtime_error("a player can be member of one team only");
+    if (member == nullptr)
+        throw invalid_argument("can't add nulptr to team");
+
+    this->group_.push_back(member);
+    member->setIsPlay();
 }
 void Team::attack(Team *enemy)
 {
-    // first, find the new leader
+    if (enemy == nullptr)
+        throw invalid_argument("can't attack nulptr");
+
+    if (enemy == this)
+        throw runtime_error("No self harm");
+
+    if (this->stillAlive() == 0)
+        throw runtime_error("a dead Team can't attack");
+
+    if (enemy->stillAlive() == 0)
+        throw runtime_error("a dead Team can't be attacked");
+
+    // find the new leader
     this->leaderIndex_ = findClosestToLeader(this);
-    // second, find the victiom
+
     // first time for cowboys
     for (Character *member : group_)
     {
+        // all the enemy members are dead
+        if (enemy->stillAlive() == 0)
+            return;
+        // find victim from the enemy team
         size_t victimindex = findClosestToLeader(enemy);
         if (!member->getIsNinja())
             member->attack(enemy->group_[victimindex]);
@@ -51,6 +92,10 @@ void Team::attack(Team *enemy)
     // second time for ninjas
     for (Character *member : group_)
     {
+        // all the enemy members are dead
+        if (enemy->stillAlive() == 0)
+            return;
+        // find victim from the enemy team
         size_t victimindex = findClosestToLeader(enemy);
         if (member->getIsNinja())
             member->attack(enemy->group_[victimindex]);
@@ -59,18 +104,13 @@ void Team::attack(Team *enemy)
 int Team::stillAlive() const
 {
     int counter = 0;
-    // first time for cowboys
+
     for (Character *member : group_)
     {
-        if (member->isAlive() && !member->getIsNinja())
+        if (member->isAlive())
             counter++;
     }
-    // second time for ninjas
-    for (Character *member : group_)
-    {
-        if (member->isAlive() && member->getIsNinja())
-            counter++;
-    }
+
     return counter;
 }
 void Team::print() const
@@ -79,13 +119,13 @@ void Team::print() const
     // first time for cowboys
     for (Character *member : group_)
     {
-        if (member->isAlive() && !member->getIsNinja())
+        if (!member->getIsNinja())
             cout << member->print() << endl;
     }
     // second time for ninjas
     for (Character *member : group_)
     {
-        if (member->isAlive() && member->getIsNinja())
+        if (member->getIsNinja())
             cout << member->print() << endl;
     }
 }

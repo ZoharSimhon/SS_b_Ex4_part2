@@ -23,6 +23,7 @@ namespace ariel
         int hitPoint_;
         string name_;
         bool isNinja_;
+        bool isPlay_;
 
     public:
         // constructor
@@ -33,12 +34,14 @@ namespace ariel
         Point getLocation() const;
         int getHitPoint() const;
         bool getIsNinja() const;
+        bool getIsPlay() const;
 
         // setters
         void setLocation(const Point &);
+        void setIsPlay();
 
         bool isAlive() const;
-        double distance(const Character &) const;
+        double distance(const Character *) const;
         void hit(int);
 
         //virtual functions

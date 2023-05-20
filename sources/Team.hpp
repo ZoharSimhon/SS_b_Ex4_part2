@@ -16,13 +16,19 @@ namespace ariel
         vector<Character *> group_;
         size_t leaderIndex_;
 
+    public:
         // helper functions
         size_t findClosestToLeader(Team *team);
-
-    public:
         Team(Character *);
+        // getters
+        vector<Character *> const *getGroup() const;
+        size_t getLeaderIndex() const;
+
+        // setter
+        void setLeaderIndex(size_t);
+
         void add(Character *);
-        void attack(Team *);
+        virtual void attack(Team *);
         int stillAlive() const;
         void print() const;
         // ~Team();

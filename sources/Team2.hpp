@@ -1,25 +1,26 @@
 #pragma once
 
-#include "Cowboy.hpp"
-#include "Ninja.hpp"
-#include "OldNinja.hpp"
-#include "TrainedNinja.hpp"
-#include "YoungNinja.hpp"
+#include <unistd.h>
+
+#include "Team.hpp"
 
 namespace ariel
 {
-    class Team2
+    class Team2 : public Team
     {
-    private:
-        vector<Character *> group;
-        int leaderIndex;
+    // private:
+    //     vector<Character *> group_;
+    //     size_t leaderIndex_;
+
+    //     // helper functions
+    //     size_t findClosestToLeader(Team2 *team);
 
     public:
-        Team2(Character);
-        void add(Character *);
-        void attack(Team2 *);
-        int stillAlive() const;
+        Team2(Character *);
+        void attack(Team *);
         void print() const;
-        // ~Team2();
+        // void add(Character *);
+        // int stillAlive() const;
+        // ~Team();
     };
 }
