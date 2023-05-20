@@ -1,5 +1,7 @@
 #pragma once
 
+#include <unistd.h>
+
 #include "Cowboy.hpp"
 #include "Ninja.hpp"
 #include "OldNinja.hpp"

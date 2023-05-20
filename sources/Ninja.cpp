@@ -31,10 +31,13 @@ string Ninja::print() const
 
     return toPrint;
 }
-void Ninja::attack(Character * enemy)
+void Ninja::attack(Character *enemy)
 {
-    if( this->distance(*enemy) < 1)
+    if (this->distance(*enemy) < 1)
         this->slash(enemy);
     else
+    {
+        cout<<to_string(distance(*enemy))<<endl;
         this->move(enemy);
+    }
 }

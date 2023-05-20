@@ -17,24 +17,33 @@ double Point::distance(const Point &otherPoint) const
 
 string Point::print() const
 {
-    string toPrint =  "(" + to_string(this->x_ ) + "," + to_string(this->y_) + ")";
+    string toPrint = "(" + to_string(this->x_) + "," + to_string(this->y_) + ")";
     return toPrint;
 }
 
 const Point Point::moveTowards(const Point &src, const Point &dest, double distance)
 {
+
+    if (distance < 0)
+        throw invalid_argument("Dinstance must to be non-negative number");
     if (distance == 0)
         return src;
     if (src.distance(dest) <= distance)
         return dest;
 
-    // calculate the equation of a line
-    double m = (dest.y_ - src.y_) / (dest.x_ - src.x_); // Calculate the slope
-    double b = src.y_ - m * src.x_;                   // Calculate the y-intercept
+    // Calculate the vector components (dx, dy) from source to destination
+    double dx = dest.x_ - src.x_;
+    double dy = dest.y_ - src.y_;
 
-    // Calculate the coordinates of the point on the line
-    double x = (distance / sqrt(1 + m * m)) + src.x_;
-    double y = m * (x - src.x_) + src.y_;
+    // Calculate the magnitude of the vector (dx, dy)
+    double magnitude = sqrt(dx * dx + dy * dy);
+
+    // Calculate the scaling factor to move along the vector
+    double scale = distance / magnitude;
+
+    // Calculate the new point by moving distance along the vector
+    double x = src.x_ + scale * dx;
+    double y = src.y_ + scale * dy;
 
     return Point(x, y);
 }

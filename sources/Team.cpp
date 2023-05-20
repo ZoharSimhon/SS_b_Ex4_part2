@@ -12,12 +12,10 @@ Team::Team(Character *leader)
 size_t Team::findClosestToLeader(Team *team)
 {
     Character *currLeader = this->group_[leaderIndex_];
-    if (currLeader->isAlive())
-        return this->leaderIndex_;
 
     size_t index = 0;
-    int minDistance = __INT_MAX__;
-    size_t minIndex = 0;
+    double minDistance = __DBL_MAX__;
+    size_t minIndex = __INT_MAX__;
 
     for (Character *member : team->group_)
     {
