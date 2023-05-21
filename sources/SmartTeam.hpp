@@ -1,5 +1,5 @@
-#ifndef TEAM2_HPP
-#define TEAM2_HPP
+#ifndef SMART_TEAM_HPP
+#define SMART_TEAM_HPP
 
 #include <unistd.h>
 
@@ -7,10 +7,10 @@
 
 namespace ariel
 {
-    class Team2 : public Team
+    class SmartTeam : public Team
     {
     public:
-        Team2(Character *);
+        SmartTeam(Character *);
         void attack(Team *);
         void print() const;
     };

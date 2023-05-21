@@ -12,6 +12,12 @@ void Team2::attack(Team *enemy)
     if (enemy == this)
         throw runtime_error("No self harm");
 
+    if (this->stillAlive() == 0)
+        throw runtime_error("a dead Team can't attack");
+
+    if (enemy->stillAlive() == 0)
+        throw runtime_error("a dead Team can't be attacked");
+
     // find the new leader
     this->setLeaderIndex(findClosestToLeader(this));
     for (Character *member : *(this->getGroup()))
@@ -22,6 +28,7 @@ void Team2::attack(Team *enemy)
 
         // find victim from the enemy team
         size_t victimIndex = findClosestToLeader(enemy);
+        //attack the victim
         member->attack((*enemy->getGroup())[victimIndex]);
     }
 }
